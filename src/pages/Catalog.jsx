@@ -6,26 +6,20 @@ import CheckBox from '../components/CheckBox'
 
 import Button from '../components/Button'
 import InfinityList from '../components/InfinityList'
-import { useLocation } from "react-router-dom";
+import useQuery from '../hooks/useQuery';
 
 
 const Catalog = () => {
-    const location = useLocation()
+    const searchTerm = useQuery().get('searchTerm')
 
     const initFilter = {
         categories: [],
         brands: []
     }
 
-    const [products, setProducts] = useState(() => {
-        const searchedProducts = location.state.searchedProducts
-        return searchedProducts ? searchedProducts : []
-    })
+    const [products, setProducts] = useState([])
 
-    const [productFilter, setProductFilter]= useState(() => {
-        const searchedProducts = location.state.searchedProducts
-        return searchedProducts ? searchedProducts : []
-    })
+    const [productFilter, setProductFilter]= useState([])
 
     const [filter, setFilter] = useState(initFilter)
 
@@ -56,25 +50,20 @@ const Catalog = () => {
      useEffect(() => {
         async function getProducts() {
             try {
-                const response = await wareHouseAPI.getAll();
+                const response = await wareHouseAPI.search(searchTerm);
                 if(response.status === 200) {
-                    const products = response.data
-                    setProducts(products)
-                    setProductFilter(products)
+                    console.log(response.data)
+                    setProducts(response.data)
+                    setProductFilter(response.data)
                 } else {
                     console.log(response)
                 }
-            } catch (error) {
-                console.log(error)
-            }
+            } catch(err) {
+                console.log(err)
+            }           
         }
-        if(products.length === 0)
-            getProducts()
-        if(location.state.searchedProducts){
-            setProducts(location.state.searchedProducts)
-            setProductFilter(location.state.searchedProducts)
-        }
-    },[location.state.searchedProducts])
+        getProducts()
+    },[searchTerm])
 
     useEffect(() => {
         async function getBrands() {
@@ -123,16 +112,18 @@ const Catalog = () => {
 
     useEffect(
         () => {
-            let temp = [...products]
+            try {
+                let temp = [...products]
 
-            if (filter.categories.length > 0) {
-                temp = temp.filter(e => filter.categories.includes(e.product.category))
-            }
-
-            if (filter.brands.length > 0) {
-                temp = temp.filter(e => filter.brands.includes(e.product.brand))
-            }
-            setProductFilter(temp)
+                if (filter.categories.length > 0) {
+                    temp = temp.filter(e => filter.categories.includes(e.product.category))
+                }
+    
+                if (filter.brands.length > 0) {
+                    temp = temp.filter(e => filter.brands.includes(e.product.brand))
+                }
+                setProductFilter(temp)
+            } catch(err) {} 
         },
         [filter]
     )

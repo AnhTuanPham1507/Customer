@@ -35,16 +35,18 @@ const mainNav = [
 
 const Header = (props) => {
     const [showSearchForm, setShowSearchForm] = useState(false);
-    const cartLength = useSelector((state) => state.cartItems.value.length)
-    const { pathname } = useLocation()
-    const activeNav = mainNav.findIndex(e => e.path === pathname)
+    const cartItems = useSelector((state) => state.cartItems.value)
+    const token = useSelector((state) => state.token.value)
     const headerRef = useRef(null)
     const dispatch = useDispatch()
     const history = useHistory()
+    const { pathname } = useLocation()
+
+    const activeNav = mainNav.findIndex(e => e.path === pathname)
+
 
     function handleSearchFormShow() {
         setShowSearchForm(!showSearchForm)
-       
     };
 
     async function handleSearch(searchTerm) {
@@ -52,9 +54,8 @@ const Header = (props) => {
             const response = await wareHouseAPI.search(searchTerm);
             if(response.status === 200) {
                 const searchedProducts = response.data
-                console.log(searchedProducts)
-                history.push('/catalog',{searchedProducts})
-                
+                setShowSearchForm(!showSearchForm)
+                history.push(`/catalog?searchTerm=${searchTerm}`)
             } else {
                 console.log(response)
             }
@@ -62,10 +63,6 @@ const Header = (props) => {
             console.log(error)
         }
     };
-
-    
-
-    
 
     function handleLogout (){
         dispatch(removeToken())
@@ -155,13 +152,13 @@ const Header = (props) => {
                                 <Dropdown.Toggle className="buttomOpiton"  id="dropdown-custom-components">
                                 <img src={cart}  />
                                 {
-                                    cartLength !== 0 ?
-                                    <span className="cartLength">{cartLength}</span>
+                                    cartItems.length !== 0 ?
+                                    <span className="cartLength">{cartItems.length}</span>
                                     :<></>
                                 }
                                 
                                 </Dropdown.Toggle>
-                               <HeaderUserInfo  onLogout={handleLogout} />
+                               <HeaderUserInfo  cartItems={cartItems} token={token} onLogout={handleLogout} />
                             </Dropdown>
                         </div>
                     </div>

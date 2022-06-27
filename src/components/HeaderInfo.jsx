@@ -14,9 +14,7 @@ HeaderUserInfo.propTypes = {
 };
 
 function HeaderUserInfo(props) {
-    const { onLogout } = props
-    const cartArray = useSelector((state) => state.cartItems.value)
-    const token = useSelector(state => state.token.value)
+    const { onLogout, cartItems, token } = props
 
     function handleLogout() {
         if (onLogout) {
@@ -27,15 +25,15 @@ function HeaderUserInfo(props) {
     return (
         <Dropdown.Menu>
             {
-                token === null
+                token
                     ?
                     <>
                         
                             {
-                            cartArray.length!==0?
+                            cartItems.length!==0?
                              <>
                                 <Dropdown.Item className="cartDetails-top" href="/cart">
-                                    Có {cartArray.length} sản phẩm trong giỏ. 
+                                    Có {cartItems.length} sản phẩm trong giỏ. 
                                 </Dropdown.Item>
                             </>
                             :
@@ -46,7 +44,7 @@ function HeaderUserInfo(props) {
                        
                         <Dropdown.Item href="/cart">
                             <img src={cart} alt="" /> Giỏ hàng {
-                                cartArray.length!==0 ? <>({cartArray.length})</> 
+                                cartItems.length!==0 ? <>({cartItems.length})</> 
                                 :<></>}
                         </Dropdown.Item>
                         <Dropdown.Item href="/cart">
@@ -61,10 +59,10 @@ function HeaderUserInfo(props) {
 
                     <>
                         {
-                            cartArray.length!==0?
+                            cartItems.length!==0?
                              <>
                                 <Dropdown.Item className="cartDetails-top" href="/cart">
-                                    Có {cartArray.length} sản phẩm trong giỏ. 
+                                    Có {cartItems.length} sản phẩm trong giỏ. 
                                 </Dropdown.Item>
                             </>
                             :
@@ -80,7 +78,7 @@ function HeaderUserInfo(props) {
                         </Dropdown.Item>
                         <Dropdown.Item href="/cart">
                             <img src={cart} alt="" /> Giỏ hàng {
-                                cartArray.length!==0 ? <>({cartArray.length})</> 
+                                cartItems.length!==0 ? <>({cartItems.length})</> 
                                 :<></>} 
                         </Dropdown.Item>
                         <Dropdown.Item onClick={handleLogout}>

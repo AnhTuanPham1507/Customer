@@ -60,6 +60,11 @@ const supplierAPI = {
 
 const exportOrderAPI = {
   getAll: () => axi.get('/exportOrder'),
+  getByCustomerId: (token) => axi.get('/exportOrder/customer',{
+    headers: {
+      "x-access-token": token
+    }
+  }),
   create: (inputExportOrder) => {
     return axi.post(`/exportOrder`,inputExportOrder)
   }

@@ -11,7 +11,7 @@ function Order() {
     useEffect(() => {
         async function getOrders () {
             try {
-                const res = await exportOrderAPI.getAll()
+                const res = await exportOrderAPI.getByCustomerId(token)
                 if(res.status === 200) {
                     const data = res.data
                     setOrders(data)
@@ -23,7 +23,7 @@ function Order() {
            }
         }
         getOrders()
-    }, [])
+    }, [token])
 
     return (
         <OrderTable orders={orders} />

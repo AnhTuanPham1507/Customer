@@ -9,6 +9,7 @@ import { useHistory } from 'react-router';
 
 import { customerAPI } from '../api/api';
 import { addToken } from '../redux/token/tokenSlice';
+import { useEffect } from 'react';
 
 function Login() {
     const history = useHistory()

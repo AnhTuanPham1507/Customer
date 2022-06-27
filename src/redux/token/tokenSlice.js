@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const token = localStorage.getItem('token') !== null ? localStorage.getItem('token') : null
+const token = localStorage.getItem('token') ? localStorage.getItem('token') : null
 
 const initialState = {
     value: token,
@@ -16,7 +16,7 @@ export const tokenSlice = createSlice({
         },
         removeToken: (state, action) => {
             state.value = null
-            localStorage.setItem('token',null)
+            localStorage.removeItem('token')
         },
     },
 })
