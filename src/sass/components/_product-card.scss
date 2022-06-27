@@ -4,16 +4,18 @@
     box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;
     border-radius: 10px;
     position: relative;
+    overflow: hidden;
+	transition: transform .5s ease-in-out;
 
     &__image {
-        padding-top: 100%;
+        padding-top: 90%;
         position: relative;
         overflow: hidden;
         margin-bottom: 30px;
 
         img {
             position: absolute;
-            top: 0;
+            top: 6px;
             left: 50%;
             transform: translateX(-50%);
             height: 100%;
@@ -28,22 +30,22 @@
             }
         }
 
-        &:hover img {
-            &:nth-child(1) {
-                transform: translateX(-50%) scale(0);
-            }
+        // &:hover img {
+        //     &:nth-child(1) {
+        //         transform: translateX(-50%) scale(0);
+        //     }
 
-            &:nth-child(2) {
-                transform: translateX(-50%) scale(1);
-                transition: transform 0.5s ease;
-            }
-        }
+        //     &:nth-child(2) {
+        //         transform: translateX(-50%) scale(1);
+        //         transition: transform 0.5s ease;
+        //     }
+        // }
     }
 
     &__name {
-        margin-bottom: 10px;
+        margin: 0 10px 10px 10px;
         color: $txt-main-color;
-        font-size: 1.5rem;
+        font-size: 17px;
         font-weight: normal;
         font-weight: 500;
         height: 40px;
@@ -67,25 +69,40 @@
 
     &__btn {
         @include tablet {
-            display: none;
+            // display: none;
         }
+    }
+
+    &__content__left{
+        width: 80%;
+        float: left;
+        margin: 10px 0;
+        height: 40px;
+        
+        &__text{
+            text-align: left;
+            margin: 10px 15px;
+            font-size: 15px;
+            font-weight: 400;
+        }
+    }
+    &__content__right{
+        width: 20%;
+        height: 40px;
+        float: right;
+        
     }
 }
 .product-card__btn button{
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    
-
-    display: inline-block;
-    
+    margin: 10px 10px 10px -10px;
     text-align: center;
-    
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    transition: background-color .3s, opacity .5s, visibility .5s;
-    opacity: 0;
-    visibility: hidden;
-    z-index: 1000;
+}
+.btn__txt{
+    padding: 0;
+}
+.product-card:hover {
+    transform: scale(1.05);
 }

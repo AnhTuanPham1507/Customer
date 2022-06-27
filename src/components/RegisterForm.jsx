@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Col } from 'react-bootstrap';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 RegisterForm.propTypes = {
     onRegisterSubmit: PropTypes.func.isRequired,
@@ -24,36 +25,43 @@ function RegisterForm(props) {
     return (
 
         <>
-            <Form  onSubmit={handleRegisterSubmit}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="Email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                </Form.Group>
+            <Col className="registerForm">
+                <div className="registerForm__title">
+                    <h1>Tạo tài khoản của bạn</h1>
+                    <div className="registerForm__intro-text">
+                        Một ID là tất cả những gì bạn cần để truy cập vào tất cả các dịch vụ.
+                    </div>
+                    <div className="registerForm__intro-link">
+                        Đã có ID ?<Link className="registerForm__link"> Tìm nó ở đây</Link>
+                    </div>
+                </div>
+                <Form  onSubmit={handleRegisterSubmit}>
+                    <Form.Group className="mb-3" >
+                        <Form.Control className="registerForm__input" type="text" placeholder="Tên khách hàng" name="name" value={name} onChange={(e) => setName(e.target.value)}/>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Control className="registerForm__input" type="email" placeholder="Email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" >
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Name" name="name" value={name} onChange={(e) => setName(e.target.value)}/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Control className="registerForm__input" type="password" placeholder="Mật khẩu" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control type="text" placeholder="Address" name="address" value={address} onChange={(e) => setAddress(e.target.value)}/>
-                </Form.Group>
 
-                <Form.Group className="mb-3" >
-                    <Form.Label>Phone</Form.Label>
-                    <Form.Control type="text" placeholder="Phone" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Control className="registerForm__input" type="text" placeholder="Địa chỉ" name="address" value={address} onChange={(e) => setAddress(e.target.value)}/>
+                    </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-            </Form>
+                    <Form.Group className="mb-3" >
+                        <Form.Control className="registerForm__input" type="text" placeholder="Số điện thoại" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                    </Form.Group>
+
+                    <Button className="registerForm__button btn"  type="submit">
+                        Đăng ký
+                    </Button>
+                </Form>
+            </Col>
         </>
     );
 }

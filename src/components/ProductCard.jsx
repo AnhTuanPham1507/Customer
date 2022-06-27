@@ -24,27 +24,22 @@ const ProductCard = props => {
                     {/* <img src={`${process.env.REACT_APP_IMAGEURL}${item.product.productImage}`} alt="" /> */}
                 </div>
                 <h3 className="product-card__name">{item.product.name}</h3>
-                <div className="product-card__price">
-                    {numberWithCommas(item.soldPrice)}
-                    {/* <span className="product-card__price__old">
-                        <del>{numberWithCommas(399000)}</del>
-                    </span> */}
-                    
-                    {/* <span className="product-card__price__old">
-                        <del>{numberWithCommas(399000)}</del>
-                    </span> */}
+                <div className="product-card__content__left">
+                    <p className="product-card__content__left__text">{numberWithCommas(item.soldPrice)}</p> 
                 </div>
             </Link>
-            <div className="product-card__btn">
-                <Button
-                      
-                    icon="bx bx-cart"
-                    animate={true}
-                    onClick={() => dispatch(set(item))}
-                    className="add"
-                >
-                    +
-                </Button>
+            <div className="product-card__content__right">
+                <div className="product-card__btn">
+                    <Button
+                        
+                        icon="bx bx-cart"
+                        animate={true}
+                        onClick={() => dispatch(set(item))}
+                        className="add"
+                    >
+                        +
+                    </Button>
+                </div>
             </div>
         </div>
         : <div>loading</div>

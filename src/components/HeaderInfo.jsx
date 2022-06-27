@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUser,faBox,faGear,faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import cart from '../assets/images/icon/cart.png';
 import heart from '../assets/images/icon/heart.png';
 
@@ -27,26 +27,64 @@ function HeaderUserInfo(props) {
     return (
         <Dropdown.Menu>
             {
-                token !== null
+                token === null
                     ?
                     <>
-                        <Dropdown.Item href="/user-info">Xem thông tin</Dropdown.Item>
-                        <Dropdown.Item href="/order">Xem đơn hàng</Dropdown.Item>
-                        <Dropdown.Item href="/cart">Xem giỏ hàng</Dropdown.Item>
-                        <Dropdown.Item onClick={handleLogout}>
-                            đăng xuất
-                        </Dropdown.Item>
-                    </>
-                    :
-                    <>
+                        
+                            {
+                            cartArray.length!==0?
+                             <>
+                                <Dropdown.Item className="cartDetails-top" href="/cart">
+                                    Có {cartArray.length} sản phẩm trong giỏ. 
+                                </Dropdown.Item>
+                            </>
+                            :
+                            <>
+                                <div className="cartDetails">Giỏ hàng trống.</div>
+                            </>
+                            } 
+                       
                         <Dropdown.Item href="/cart">
-                            <img src={cart} alt="" /> Giỏ hàng {cartArray.length!==0? cartArray.length :<></>} 
+                            <img src={cart} alt="" /> Giỏ hàng {
+                                cartArray.length!==0 ? <>({cartArray.length})</> 
+                                :<></>}
                         </Dropdown.Item>
                         <Dropdown.Item href="/cart">
                             <img src={heart} alt="" /> Yêu thích
                         </Dropdown.Item>
                         <Dropdown.Item href="/login">
                             <FontAwesomeIcon className="userCircle" icon={faCircleUser} /> Đăng nhập
+                        </Dropdown.Item>
+                    </>
+                    
+                    :
+
+                    <>
+                        {
+                            cartArray.length!==0?
+                             <>
+                                <Dropdown.Item className="cartDetails-top" href="/cart">
+                                    Có {cartArray.length} sản phẩm trong giỏ. 
+                                </Dropdown.Item>
+                            </>
+                            :
+                            <>
+                                <div className="cartDetails">Giỏ hàng trống.</div>
+                            </>
+                        } 
+                        <Dropdown.Item href="/user-info">
+                            <FontAwesomeIcon className="userCircle" icon={faGear}/> Xem thông tin
+                        </Dropdown.Item>
+                        <Dropdown.Item href="/order">
+                            <FontAwesomeIcon className="userCircle" icon={faBox}/> Xem đơn hàng
+                        </Dropdown.Item>
+                        <Dropdown.Item href="/cart">
+                            <img src={cart} alt="" /> Giỏ hàng {
+                                cartArray.length!==0 ? <>({cartArray.length})</> 
+                                :<></>} 
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={handleLogout}>
+                            <FontAwesomeIcon className="userCircle" icon={faArrowRightFromBracket} /> Đăng xuất
                         </Dropdown.Item>
                     </>
             }
