@@ -9,6 +9,7 @@ import Product from '../pages/Product'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Order from '../pages/Order'
+import Category from '../pages/Category'
 
 const Routes = () => {
     return (
@@ -16,6 +17,7 @@ const Routes = () => {
             <Route path='/' exact component={Home}/>
             <Route path='/product/:id' component={Product}/>
             <Route path='/catalog' component={Catalog}/>
+            <Route path='/category/:id' component={Category}/>
             <Route path='/cart' component={Cart}/>
             <Route path='/login' component={Login}/>
             <Route path='/register' component={Register}/>

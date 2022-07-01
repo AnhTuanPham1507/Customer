@@ -25,7 +25,7 @@ function HeaderUserInfo(props) {
     return (
         <Dropdown.Menu>
             {
-                token
+                !token
                     ?
                     <>
                         

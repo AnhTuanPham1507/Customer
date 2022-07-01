@@ -45,7 +45,8 @@ const employeeAPI = {
 const wareHouseAPI = {
   getAll: () => axi.get(`/warehouse`),
   search: (searchTerm) => axi.get(`/warehouse?searchTerm=${searchTerm}`),
-  getById: (id) => axi.get(`/warehouse/${id}`)
+  getById: (id) => axi.get(`/warehouse/${id}`),
+  getCategoryById : (id) => axi.get(`/warehouse/category/${id}`)
 }
 
 const supplierAPI = {

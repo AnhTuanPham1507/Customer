@@ -101,10 +101,13 @@ const Home = () => {
                     >
                         {
                             categories.map((item) => (
-                                <CategoryCard
-                                    key={item._id}
-                                    item={item}
+                                <Link to={`/category/${item._id}`}>
+                                    <CategoryCard
+                                        key={item._id}
+                                        item={item}
                                 />
+                                </Link>
+                                
                             ))
                         }
                     </Grid>
