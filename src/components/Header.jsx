@@ -17,14 +17,14 @@ import cart from '../assets/images/icon/cart.png';
 import heart from '../assets/images/icon/heart.png';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { wareHouseAPI } from '../api/api';
-
+const logo1 = "https://www.chili.vn/blogs/wp-content/uploads/2019/03/thiet-ke-web-ban-hang-1.png";
 const mainNav = [
     {
         display: "Sản phẩm",
         path: "/catalog"
     },
     {
-        display: "Phụ kiện",
+        display: "Tin Tức ",
         path: "/accessories"
     },
     {
@@ -121,7 +121,7 @@ const Header = (props) => {
                     </div>
                     <div className="header__logo">
                         <Link to="/">
-                            <img src={logo} alt="" />
+                            <img src={logo1} alt="" />
                         </Link>
                     </div>
                     <div className="header__menu__left" ref={menuLeft}>

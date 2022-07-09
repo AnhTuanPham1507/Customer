@@ -10,6 +10,7 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Order from '../pages/Order'
 import Category from '../pages/Category'
+import Contact from '../pages/Contact'
 
 const Routes = () => {
     return (
@@ -22,6 +23,7 @@ const Routes = () => {
             <Route path='/login' component={Login}/>
             <Route path='/register' component={Register}/>
             <Route path='/order' component={Order}/>
+            <Route path='/contact' component={Contact}/>
         </Switch>
     )
 }
