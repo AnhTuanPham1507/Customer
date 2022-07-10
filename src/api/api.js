@@ -66,8 +66,12 @@ const exportOrderAPI = {
       "x-access-token": token
     }
   }),
-  create: (inputExportOrder) => {
-    return axi.post(`/exportOrder`,inputExportOrder)
+  create: (token, inputExportOrder) => {
+    return axi.post(`/exportOrder`,inputExportOrder,{
+      headers: {
+        "x-access-token": token
+      }
+    })
   }
 }
 export {brandAPI, categoryAPI, customerAPI, employeeAPI, wareHouseAPI, supplierAPI, exportOrderAPI};

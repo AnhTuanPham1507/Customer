@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux'
 import { removeAll } from '../redux/shopping-cart/cartItemsSlide'
 
 const Cart = () => {
+    const token = useSelector(state => state.token.value)
 
     const cartItems = useSelector((state) => state.cartItems.value)
 
@@ -34,10 +35,14 @@ const Cart = () => {
 
     async function handleCreateOrder() {
         try {
+            if(!token) {
+                alert('vui lòng đăng nhập')
+                history.push('/login')
+                return
+            }
             const exportOrder = {
                 totalBill,
                 employee: '629ef3d6a8dd7a3001491a7b',
-                customer: '62a436b7f1e2ce8c14ecbd16',
                 shipAddress: address
             }
     
@@ -49,7 +54,7 @@ const Cart = () => {
                     quantity: cart.quantity,
                 }
             })
-            const res = await exportOrderAPI.create({exportOrder, purchaseProducts})
+            const res = await exportOrderAPI.create(token,{exportOrder, purchaseProducts})
             if(res.status === 201) {
                 alert('đặt hàng thành công')
                 dispatch(removeAll())
