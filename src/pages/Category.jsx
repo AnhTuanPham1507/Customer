@@ -160,7 +160,7 @@ const Catogory = () => {
                     <Button size="sm" onClick={() => showHideFilter()}>bộ lọc</Button>
                 </div>
                 <div className="catalog__content">
-                    <ListProduct
+                    <InfinityList
                         products={products}
                     />
                 </div>

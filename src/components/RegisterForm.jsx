@@ -54,7 +54,7 @@ function RegisterForm(props) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" >
-                        <Form.Control className="registerForm__input" type="text" placeholder="Số điện thoại" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                        <Form.Control className="registerForm__input" type="text" placeholder="Số điện thoại" minLength={10} name="phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
                     </Form.Group>
 
                     <Button className="registerForm__button btn"  type="submit">

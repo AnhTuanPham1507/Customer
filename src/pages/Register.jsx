@@ -8,12 +8,18 @@ import { customerAPI } from '../api/api';
 
 import RegisterForm from '../components/RegisterForm';
 import { addToken } from '../redux/token/tokenSlice';
+import {validateCustomerData} from '../utils/valiedateCustomerData';
+
 
 function Register() {
     const history = useHistory()
     const dispatch = useDispatch()
 
     function handleRegisterSubmit(registerData) {
+        if(!validateCustomerData({...registerData})) {
+            alert('thông tin bạn điền chưa hợp lệ')
+            return
+        }
         async function createCustomer() {
             try {
                 const res = await customerAPI.register(registerData)

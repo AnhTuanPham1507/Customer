@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux'
 import { removeAll } from '../redux/shopping-cart/cartItemsSlide'
 
 const Cart = () => {
+    const token = useSelector(state => state.token.value)
 
     const cartItems = useSelector((state) => state.cartItems.value)
 
@@ -27,6 +28,8 @@ const Cart = () => {
 
     const [address, setAddress] = useState('')
 
+    const [paymentMethod, setPaymentMethod] = useState('INPERSON')
+
     useEffect(() => {
         setTotalBill(cartItems.reduce((total, item) => total + (Number(item.quantity) * Number(item.soldPrice)), 0))
         setTotalProducts(cartItems.length)
@@ -34,11 +37,15 @@ const Cart = () => {
 
     async function handleCreateOrder() {
         try {
+            if(!token) {
+                alert('vui lòng đăng nhập')
+                history.push('/login')
+                return
+            }
             const exportOrder = {
                 totalBill,
-                employee: '629ef3d6a8dd7a3001491a7b',
-                customer: '62a436b7f1e2ce8c14ecbd16',
-                shipAddress: address
+                paymentMethod,
+                shipAddress: address,
             }
     
             const purchaseProducts = cartItems.map(cart => {
@@ -49,11 +56,15 @@ const Cart = () => {
                     quantity: cart.quantity,
                 }
             })
-            const res = await exportOrderAPI.create({exportOrder, purchaseProducts})
+            const res = await exportOrderAPI.create(token,{exportOrder, purchaseProducts})
             if(res.status === 201) {
-                alert('đặt hàng thành công')
-                dispatch(removeAll())
-                history.push('/order')
+                if(paymentMethod === 'INPERSON') {
+                    alert('đặt hàng thành công')
+                    dispatch(removeAll())
+                    history.push('/order')
+                } else {
+                    window.location.href= res.data.payUrl
+                }
             } else {
                 alert('đặt hàng thất bại')
                 console.log(res)
@@ -88,6 +99,15 @@ const Cart = () => {
                                     value={address} 
                                     onChange={(e) => setAddress(e.target.value)}
                                 />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Phương thức thanh toán</Form.Label>
+                                <Form.Select 
+                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                >
+                                    <option value="INPERSON">thanh toán khi nhận hàng</option>
+                                    <option value="MOMO">thanh toán qua MoMo</option>
+                                </Form.Select>
                             </Form.Group>
                         </Form>
                         <div className="cart__info__txt__price">

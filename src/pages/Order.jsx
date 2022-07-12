@@ -15,6 +15,7 @@ function Order() {
                 if(res.status === 200) {
                     const data = res.data
                     setOrders(data)
+                    console.log(data)
                 } else {
                     console.log(res)
                 }

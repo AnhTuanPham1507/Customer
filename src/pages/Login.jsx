@@ -11,16 +11,20 @@ import { customerAPI } from '../api/api';
 import { addToken } from '../redux/token/tokenSlice';
 import { useEffect } from 'react';
 
+import {validatePhone} from '../utils/valiedateCustomerData'
+
 function Login() {
     const history = useHistory()
     const dispatch = useDispatch()
     function handleLoginSubmit(formValues) {
-        const { email, password } = formValues
-
+        const { phone, password } = formValues
+        if(!validatePhone(phone)){
+            alert('số điện thoại không hợp lệ')
+            return
+        }
         async function getToken() {
             try {                
-                console.log(email,password)
-                const response = await customerAPI.login({email,password})
+                const response = await customerAPI.login({phone,password})
                 if (response.status === 200) {
                     dispatch(addToken(response.data.accessToken))
                     alert('đăng nhập thành công')
