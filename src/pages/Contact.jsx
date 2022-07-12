@@ -1,5 +1,5 @@
 import React from "react";
-import PizzaLeft from "../assets/images/favicon.png";
+import PizzaLeft from "../assets/images/contac.png";
 
 
 function Contact() {
@@ -12,7 +12,7 @@ function Contact() {
       <div className="rightSide">
         <h1> liên hệ </h1>
 
-        <form id="contact-form" method="POST">
+        <form id="form-contact" method="POST">
           <label htmlFor="name">nhập tên đầy đủ </label>
           <input name="name" placeholder="  ." type="text" />
           <label htmlFor="email">Email</label>
