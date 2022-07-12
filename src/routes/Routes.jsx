@@ -11,7 +11,7 @@ import Register from '../pages/Register'
 import Order from '../pages/Order'
 import Category from '../pages/Category'
 import Contact from '../pages/Contact'
-
+import News from '../pages/News'
 const Routes = () => {
     return (
         <Switch>
@@ -24,6 +24,7 @@ const Routes = () => {
             <Route path='/register' component={Register}/>
             <Route path='/order' component={Order}/>
             <Route path='/contact' component={Contact}/>
+            <Route path='/news' component={News}/>
         </Switch>
     )
 }

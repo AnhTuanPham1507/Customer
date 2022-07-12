@@ -116,7 +116,7 @@ const Home = () => {
             {/* best selling section */}
             <Section>
                 <SectionTitle>
-                    top sản phẩm bán chạy trong tuần
+                    Sản phẩm 
                 </SectionTitle>
                 
                 <SectionBody>
