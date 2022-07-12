@@ -1,5 +1,5 @@
 import React from "react";
-import PizzaLeft from "../assets/images/favicon.png";
+import PizzaLeft from "../assets/images/contac.png";
 
 
 function Contact() {
