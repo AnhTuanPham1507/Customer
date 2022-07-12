@@ -8,7 +8,7 @@ import Grid from './Grid'
 
 import logo from '../assets/images/Logo-2.png'
 import { Row } from 'react-bootstrap';
-
+const logo1 = "https://www.chili.vn/blogs/wp-content/uploads/2019/03/thiet-ke-web-ban-hang-1.png";
 const footerAboutLinks = [
 
     {
@@ -115,7 +115,7 @@ const Footer = () => {
                     <div className="footer__about">
                         <p>
                             <Link to="/">
-                                <img src={logo} className="footer__logo" alt="" />
+                                <img src={logo1} className="footer__logo" alt="" />
                             </Link>
                         </p>
                         <p>
