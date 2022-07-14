@@ -38,6 +38,7 @@ const Header = (props) => {
     const cartItems = useSelector((state) => state.cartItems.value)
     const token = useSelector((state) => state.token.value)
     const headerRef = useRef(null)
+    const headerTopRef = useRef(null)
     const dispatch = useDispatch()
     const history = useHistory()
     const { pathname } = useLocation()
@@ -72,10 +73,12 @@ const Header = (props) => {
     useEffect(() => {
         window.addEventListener("scroll", () => {
             try {
-                if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                     headerRef.current.classList.add('shrink')
+                    headerTopRef.current.classList.add('active')
                 } else {
                     headerRef.current.classList.remove('shrink')
+                    headerTopRef.current.classList.remove('active')
                 }
             } catch(err){}
         })
@@ -104,7 +107,7 @@ const Header = (props) => {
     return (
         <>
         <div className="header" ref={headerRef}>
-             <div className="header__top">
+             <div className="header__top" ref={headerTopRef}>
                 <div className="container">
                     <Row >
                         <Col lg="4" xs="4" className="header__top__left"><FontAwesomeIcon icon={faLocationDot} /> 60 Cửa hàng khắp cả nước</Col>
@@ -141,15 +144,17 @@ const Header = (props) => {
                                 </div>
                             ))
                         }
+                        <div className="header__menu__item header__menu__search__item">
+                            <img src={search} className="search" onClick={handleSearchFormShow} />
+                        </div>
                     </div>
                     <div className="header__menu__right">
                     
-                        <div className="header__menu__item header__menu__right__item">
-                            <img src={search} className="search" onClick={handleSearchFormShow} />
-                        </div>
+                        
                         <div className="header__menu__item header__menu__right__item">
                             <Dropdown className="buttomCart">
                                 <Dropdown.Toggle className="buttomOpiton"  id="dropdown-custom-components">
+                                   
                                 <img src={cart}  />
                                 {
                                     cartItems.length !== 0 ?

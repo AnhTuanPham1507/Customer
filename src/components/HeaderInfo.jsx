@@ -24,6 +24,7 @@ function HeaderUserInfo(props) {
 
     return (
         <Dropdown.Menu>
+             <span className="caret"></span>
             {
                 !token
                     ?

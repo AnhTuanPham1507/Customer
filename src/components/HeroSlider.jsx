@@ -61,9 +61,6 @@ const HeroSlider = props => {
             alt="Third slide"
           />  
         </Carousel.Item>
-        <Link to="/catalog">
-          <Button> xem thêm </Button>
-        </Link>
       </Carousel>
     )
 }
