@@ -25,21 +25,10 @@ const categoryAPI = {
 
 const customerAPI = {
   login: (inputLogin) => axi.post('/customer/login',inputLogin),
-  register: (inputRegister) => axi.post('/customer',inputRegister)
-}
-
-const employeeAPI = {
-  getAll: () => axi.get('/employee'),
-  update: (employee) => {
-    return axi.put(`/employee/${employee._id}`,{
-      employeeName:employee.employeeName,
-      employeePhone:employee.employeePhone,
-      employeeEmail:employee.employeeEmail,
-      employeeRole:employee.employeeRole,
-      employeeActive:employee.employeeActive,
-      employeePassword:employee.employeePassword,
-    })
-  }
+  register: (inputRegister) => axi.post('/customer',inputRegister),
+  forgotPassword: (email) => axi.post('/customer/forgotpassword', {fromEmail:email}),
+  getInfo: (token) => axi.get('/customer/info', {headers: {'x-access-token': token}}),
+  updatePassword: (token, newPassword) => axi.patch('/customer/password',{newPassword},{headers: {'x-access-token': token}})
 }
 
 const wareHouseAPI = {
@@ -74,4 +63,4 @@ const exportOrderAPI = {
     })
   }
 }
-export {brandAPI, categoryAPI, customerAPI, employeeAPI, wareHouseAPI, supplierAPI, exportOrderAPI};
+export {brandAPI, categoryAPI, customerAPI, wareHouseAPI, supplierAPI, exportOrderAPI};
