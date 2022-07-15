@@ -113,7 +113,39 @@ const Home = () => {
                     </Grid>
                 </SectionBody>
             </Section>
-            {/* best selling section */}
+            
+            {
+                categories.map((item) => (
+                    
+                    <Section>
+                    <SectionTitle>
+                       { item.name }
+                    </SectionTitle>
+                    
+                    <SectionBody>
+                        <Grid
+                            col={5}
+                            mdCol={3}
+                            smCol={2}
+                            gap={20}
+                        >
+                            {
+                                products.map((item) => (
+                                    <ProductCard
+                                        key={item._id}
+                                        item={item}
+                                    />
+                                ))
+                            }
+                        </Grid>
+                    </SectionBody>
+                </Section>
+                    
+                    
+                ))
+                
+            }
+
             <Section>
                 <SectionTitle>
                     Sản phẩm 
