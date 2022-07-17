@@ -85,7 +85,7 @@ function Search(props) {
                         </ListGroup> 
                     </div>
                     
-                    <div id="search_ajax"></div>
+                    
                 </form>
             </div>
         </div>
