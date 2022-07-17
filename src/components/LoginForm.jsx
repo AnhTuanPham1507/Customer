@@ -41,7 +41,7 @@ function LoginForm(props) {
                         <Form.Control className="loginForm__input" type="password" placeholder="Password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="loginForm__link">
-                        <Link to="/register">Quên tài khoản hoặc mật khẩu? <FontAwesomeIcon className="userCircle" icon={faUpRightFromSquare} /></Link>
+                        <Link to="/forgotpassword">Quên mật khẩu? <FontAwesomeIcon className="userCircle" icon={faUpRightFromSquare} /></Link>
                     </Form.Group>
                     <Form.Group  className="loginForm__link">
                         <span className="loginForm__notlink">Chưa có tài khoản?</span>
