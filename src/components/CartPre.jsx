@@ -15,25 +15,21 @@ const CartPre = props => {
 
     return (
         item ? 
-        <div className="cartpre__item" >
-            <div className="cartpre__item__image">
-                <img src={`${process.env.REACT_APP_IMAGEURL}${item.product.image}`} alt="" />
-            </div>
-            <div className="cartpre__item__info">
-                <div className="cartpre__item__info__name">
-                    <Link to={`/product/${item._id}`}>
-                        {`${item.product.name} - ${item.quantity} ${item.product.unit}`}
-                    </Link>
+        <Link to={`/product/${item._id}`}>
+            <div className="cartpre__item" >
+                <div className="cartpre__item__image">
+                    <img src={`${process.env.REACT_APP_IMAGEURL}${item.product.image}`} alt="" />
                 </div>
-               
-                <div className="cartpre__item__info__quantity">
-                    <div className="product__info__item__quantity">                     
+                <div className="cartpre__item__info">
+                    <div className="cartpre__item__info__name">
+                        {`${item.product.name} - ${item.quantity} ${item.product.unit}`}  
+                    </div>
+                    <div className="cartpre__item__info__quantity">      
                         x{item.quantity}                
                     </div>
                 </div>
-               
             </div>
-        </div>
+        </Link>
         : <div>loding</div>
     )
 }

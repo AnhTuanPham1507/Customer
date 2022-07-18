@@ -79,7 +79,7 @@
             &__name {
                 width: 100%;
                 overflow: hidden;
-                
+                text-align: left;
             }
 
             &__name,
@@ -90,4 +90,10 @@
 
        
     }
+}
+.cartpre__item__info__quantity{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: #6e6e73;
 }
