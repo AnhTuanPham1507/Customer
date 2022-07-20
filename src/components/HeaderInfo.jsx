@@ -68,31 +68,34 @@ function HeaderUserInfo(props) {
 
                     <>
                         {
-                            cartItems.length!==0?
-                             <>
-                                {
-                                    cartItems.map((item) => (
-                                        <Dropdown.Item className="cartDetails-top" href="/cart">
-                                            <CartPre item={item} key={item._id}/>
-                                        </Dropdown.Item>
-                                    ))
-                                }
-                            </>
-                            :
-                            <>
-                                <div className="cartDetails">Giỏ hàng trống.</div>
-                            </>
+                        cartItems.length!==0?
+                         <>
+                            {
+                                cartItems.map((item) => (
+                                    <Dropdown.Item className="cartDetails-top" href="/cart">
+                                        <CartPre item={item} key={item._id}/>
+                                    </Dropdown.Item>
+                                ))
+                            }
+                            <Dropdown.Item className="checkout" href="/cart">
+                                <div className="checkout__button">Thanh toán</div>  
+                            </Dropdown.Item>
+                        </>
+                        :
+                        <>
+                            <div className="cartDetails">Giỏ hàng trống.</div>
+                        </>
                         } 
-                        <Dropdown.Item href="/user-info">
-                            <FontAwesomeIcon className="userCircle" icon={faGear}/> Xem thông tin
-                        </Dropdown.Item>
-                        <Dropdown.Item href="/order">
-                            <FontAwesomeIcon className="userCircle" icon={faBox}/> Xem đơn hàng
-                        </Dropdown.Item>
                         <Dropdown.Item href="/cart">
                             <img src={cart} alt="" /> Giỏ hàng {
                                 cartItems.length!==0 ? <>({cartItems.length})</> 
                                 :<></>} 
+                        </Dropdown.Item>
+                        <Dropdown.Item href="/order">
+                            <FontAwesomeIcon className="userCircle" icon={faBox}/> Xem đơn hàng
+                        </Dropdown.Item>
+                        <Dropdown.Item href="/user-info">
+                            <FontAwesomeIcon className="userCircle" icon={faGear}/> Xem thông tin
                         </Dropdown.Item>
                         <Dropdown.Item onClick={handleLogout}>
                             <FontAwesomeIcon className="userCircle" icon={faArrowRightFromBracket} /> Đăng xuất

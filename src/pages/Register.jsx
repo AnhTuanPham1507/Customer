@@ -2,13 +2,18 @@ import React from 'react';
 
 import { Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHistory } from 'react-router';
 import { customerAPI } from '../api/api';
 
 import RegisterForm from '../components/RegisterForm';
 import { addToken } from '../redux/token/tokenSlice';
 import {validateCustomerData} from '../utils/valiedateCustomerData';
+
+import { faAngleRight,faCartXmark } from '@fortawesome/free-solid-svg-icons';
+
+
+import { Link } from 'react-router-dom';
 
 
 function Register() {
@@ -45,7 +50,24 @@ function Register() {
 
     return (
         <Container>
-            <h1>Đăng ký</h1>
+            <section className="breadcrumb-option">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="breadcrumb__text">
+                                <h3>Đăng ký</h3>
+                                <div className="breadcrumb__links">
+                                    <Link to="/">Trang chủ</Link>
+                                    <FontAwesomeIcon icon={faAngleRight} className="faAngleRight" />
+                                    <Link to="/login">Đăng nhập</Link>
+                                    <FontAwesomeIcon icon={faAngleRight} className="faAngleRight" />
+                                    <span>Đăng ký</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <RegisterForm onRegisterSubmit={handleRegisterSubmit} />
         </Container>
     );
