@@ -1,34 +1,40 @@
 import React from "react";
-import PizzaLeft from "../assets/images/contac.png";
+import { Form, Button } from "react-bootstrap";
 
+function Contactus() {
 
-function Contact() {
+    const handleSubmit = (event) => {
+        event.preventDefault()
+    }
+
   return (
     <div className="contact">
-      <div
-        className="leftSide"
-        style={{ backgroundImage: `url(${PizzaLeft})` }}
-      ></div>
-      <div className="rightSide">
-        <h1> liên hệ </h1>
 
-        <form id="form-contact" method="POST">
-          <label htmlFor="name">nhập tên đầy đủ </label>
-          <input name="name" placeholder="  ." type="text" />
-          <label htmlFor="email">Email</label>
-          <input name="email" placeholder="nhập email..." type="email" />
-          <label htmlFor="message">tin nhắn </label>
-          <textarea
-            rows="6"
-            placeholder="nhập lời nhắn "
-            name="message"
-            required
-          ></textarea>
-          <button type="submit"> gửi tin nhắn </button>
-        </form>
-      </div>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicText">
+          <Form.Label>Fullname</Form.Label>
+          <Form.Control type="text" placeholder="Fullname" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicText">
+          <Form.Label>Subject</Form.Label>
+          <Form.Control type="text" placeholder="Subject" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicText">
+          <Form.Label>Message</Form.Label>
+          <Form.Control type="text-area" placeholder="Message" />
+        </Form.Group>
+        <Button variant="primary" className="mb-3" type="submit">
+          Send
+        </Button>
+      </Form>
+
     </div>
   );
 }
 
-export default Contact;
+export default Contactus;

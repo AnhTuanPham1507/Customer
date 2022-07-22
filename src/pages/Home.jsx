@@ -4,7 +4,7 @@ import { wareHouseAPI, categoryAPI } from '../api/api';
 
 import Helmet from '../components/Helmet'
 import HeroSlider from '../components/HeroSlider'
-import Carousel from '../components/Carousel'
+// import Carousel from '../components/Carousel'
 import Section, { SectionTitle, SectionBody } from '../components/Section'
 import PolicyCard from '../components/PolicyCard'
 import Grid from '../components/Grid'

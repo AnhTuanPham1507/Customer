@@ -11,7 +11,7 @@ import Register from '../pages/Register'
 import Order from '../pages/Order'
 import Category from '../pages/Category'
 import Contact from '../pages/Contact'
-import News from '../pages/News'
+import PageNews from '../pages/PageNews'
 import UpdatePassword from '../pages/UpdatePassword'
 import ForgotPassword from '../pages/ForgotPassword'
 import Checkout from '../pages/Checkout'
@@ -28,7 +28,7 @@ const Routes = () => {
             <Route path='/register' component={Register}/>
             <Route path='/order' component={Order}/>
             <Route path='/contact' component={Contact}/>
-            <Route path='/news' component={News}/>
+            <Route path='/pagenews' component={PageNews}/>
             <Route path='/updatepassword' component={UpdatePassword}/>
             <Route path='/forgotpassword' component={ForgotPassword}/>
 

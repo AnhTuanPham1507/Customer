@@ -190,11 +190,15 @@ const Checkout = () => {
                                         <Button  size="block">
                                             Đặt hàng
                                         </Button>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </Form>
                     </div>
+                    <Button onClick={handleCreateOrder} size="block">
+                                            Đặt hàng
+                                        </Button>
                 
         </Helmet>
     )
