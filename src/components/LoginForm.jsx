@@ -33,12 +33,12 @@ function LoginForm(props) {
                 <Form onSubmit={handleLoginSubmit}>
                     <Form.Group className="mb-3">
                         
-                        <Form.Control className="loginForm__input" type="text" placeholder="số điện thoại" minLength={10} name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                        <Form.Control className="loginForm__input" type="text" placeholder="Số điện thoại" minLength={10} name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         
-                        <Form.Control className="loginForm__input" type="password" placeholder="Password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <Form.Control className="loginForm__input" type="password" placeholder="Mật khẩu" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="loginForm__link">
                         <Link to="/forgotpassword">Quên mật khẩu? <FontAwesomeIcon className="userCircle" icon={faUpRightFromSquare} /></Link>
@@ -47,7 +47,7 @@ function LoginForm(props) {
                         <span className="loginForm__notlink">Chưa có tài khoản?</span>
                         <Link to="/register"> Tạo ngay. <FontAwesomeIcon className="userCircle" icon={faUpRightFromSquare} /></Link>
                     </Form.Group>
-                    <Button className="loginForm__button btn" variant="primary" type="submit">
+                    <Button className="loginForm__button" type="submit">
                         Xác nhận
                     </Button>
                 </Form>

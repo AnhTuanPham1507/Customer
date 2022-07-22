@@ -1,0 +1,52 @@
+<Helmet title="Giỏ hàng">
+            <div className="cart">
+                <div className="cart__list">
+                    {
+                        cartItems.map((item) => (
+                            <CartItem item={item} key={item._id}/>
+                        ))
+                    }
+                </div>
+                <div className="cart__info">
+                    <div className="cart__info__txt">
+                        <p>
+                            Bạn đang có {totalProducts} sản phẩm trong giỏ hàng
+                        </p>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Địa chỉ giao hàng</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="địa chỉ giao hàng" 
+                                    value={address} 
+                                    onChange={(e) => setAddress(e.target.value)}
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Phương thức thanh toán</Form.Label>
+                                <Form.Select 
+                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                >
+                                    <option value="INPERSON">thanh toán khi nhận hàng</option>
+                                    <option value="MOMO">thanh toán qua MoMo</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </Form>
+                        <div className="cart__info__txt__price">
+                            <span>Thành tiền:</span> <span>{numberWithCommas(Number(totalBill))}</span>
+                        </div>
+                    </div>
+                    <div className="cart__info__btn">
+                        <Button onClick={handleCreateOrder} size="block">
+                            Đặt hàng
+                        </Button>
+                        <Link to="/catalog">
+                            <Button size="block">
+                                Tiếp tục mua hàng
+                            </Button>
+                        </Link>
+                        
+                    </div>
+                </div>
+            </div>
+        </Helmet>

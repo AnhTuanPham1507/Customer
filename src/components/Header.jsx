@@ -25,7 +25,7 @@ const mainNav = [
     },
     {
         display: "Tin Tức ",
-        path: "/news"
+        path: "/pagenews"
     },
     {
         display: "Liên hệ",

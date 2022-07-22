@@ -1,6 +1,6 @@
 import validator from 'validator';
 
-function validateCustomerData({phone, email}){
+function validateCustomerData({phone}){
     if(validator.isMobilePhone(phone,'vi-VN'))
         return true
     return false
@@ -9,6 +9,5 @@ function validateCustomerData({phone, email}){
 function validatePhone(phone){
     return validator.isMobilePhone(phone,'vi-VN')
 }
-
 
 export {validateCustomerData, validatePhone}

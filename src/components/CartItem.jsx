@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
-
+import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { updateItem, removeItem } from '../redux/shopping-cart/cartItemsSlide'
 
@@ -12,6 +12,9 @@ const CartItem = props => {
     const dispatch = useDispatch()
 
     const {item} = props
+    const cartItems = useSelector((state) => state.cartItems.value)
+
+    const [totalProductPrice, setTotalProductPrice] = useState(0)
 
     const updateQuantity = (opt) => {
         if (opt === '+') {
@@ -21,6 +24,10 @@ const CartItem = props => {
             dispatch(updateItem({...item, quantity: item.quantity - 1}))
         }
     }
+
+    useEffect(() => {
+        setTotalProductPrice(cartItems.reduce((total, item) => (Number(item.quantity) * Number(item.soldPrice)), 0))
+    }, [cartItems])
 
     // const updateCartItem = () => {
     //     dispatch(updateItem({...item, quantity: quantity}))
@@ -33,37 +40,48 @@ const CartItem = props => {
 
     return (
         item ? 
-        <div className="cart__item" >
-            <div className="cart__item__image">
-                <img src={`${process.env.REACT_APP_IMAGEURL}${item.product.image}`} alt="" />
-            </div>
-            <div className="cart__item__info">
-                <div className="cart__item__info__name">
-                    <Link to={`/product/${item._id}`}>
-                        {`${item.product.name} - ${item.quantity} ${item.product.unit}`}
-                    </Link>
-                </div>
-                <div className="cart__item__info__price">
-                    {numberWithCommas(item.soldPrice)}
-                </div>
-                <div className="cart__item__info__quantity">
-                    <div className="product__info__item__quantity">
-                        <div className="product__info__item__quantity__btn" onClick={() => updateQuantity('-')}>
-                            <i className="bx bx-minus"></i>
+            
+            <tbody>
+                <tr>
+                    <td className="product__cart__item">
+                        <Link to={`/product/${item._id}`}>
+                            <div className="product__cart__item__pic">
+                                <img className="imgCart" src={`${process.env.REACT_APP_IMAGEURL}${item.product.image}`} alt="" />
+                            </div>
+                            <div className="product__cart__item__text">
+                                <h5>{item.product.name}</h5>
+                                <h6>{numberWithCommas(item.soldPrice)}</h6>
+                            </div>
+                        </Link>
+                    </td>
+                    
+                    <td className="quantity__item">
+                        <div className="cart__item__info__quantity">
+                            <div className="product__info__item__quantity">
+                                <div className="product__info__item__quantity__btn" onClick={() => updateQuantity('-')}>
+                                    <i className="bx bx-minus"></i>
+                                </div>
+                                <div className="product__info__item__quantity__input">
+                                    {item.quantity}
+                                </div>
+                                <div className="product__info__item__quantity__btn" onClick={() => updateQuantity('+')}>
+                                    <i className="bx bx-plus"></i>
+                                </div>
+                            </div>
                         </div>
-                        <div className="product__info__item__quantity__input">
-                            {item.quantity}
-                        </div>
-                        <div className="product__info__item__quantity__btn" onClick={() => updateQuantity('+')}>
-                            <i className="bx bx-plus"></i>
-                        </div>
-                    </div>
-                </div>
-                <div className="cart__item__del">
-                    <i className='bx bx-trash' onClick={() => removeCartItem()}></i>
-                </div>
-            </div>
-        </div>
+                    </td>
+                
+                    <td className="cart__price">
+                    {numberWithCommas(Number(totalProductPrice))}</td>
+                    <td className="cart__close">
+                        <i className='bx bx-trash' onClick={() => removeCartItem()}></i>
+                    </td>
+                </tr>
+            </tbody>
+                   
+                
+ 
+
         : <div>loding</div>
     )
 }
