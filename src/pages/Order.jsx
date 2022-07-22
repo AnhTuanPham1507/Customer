@@ -12,15 +12,10 @@ function Order() {
         async function getOrders () {
             try {
                 const res = await exportOrderAPI.getByCustomerId(token)
-                if(res.status === 200) {
-                    const data = res.data
-                    setOrders(data)
-                    console.log(data)
-                } else {
-                    console.log(res)
-                }
+                const data = res.data
+                setOrders(data)
            } catch (error) {
-                console.log(error)
+                alert(error.response.data.message)
            }
         }
         getOrders()

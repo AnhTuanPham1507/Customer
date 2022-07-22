@@ -32,14 +32,10 @@ const Catogory = () => {
         async function getCategories() {
             try {
                 const response = await categoryAPI.getAll();
-                if(response.status === 200) {
-                    const categories = response.data
-                    setCategories(categories)
-                } else {
-                    console.log(response)
-                }
+                const categories = response.data
+                setCategories(categories)
             } catch (error) {
-                console.log(error)
+                alert(error.response.data.message)
             }
         }
         getCategories()
@@ -51,14 +47,10 @@ const Catogory = () => {
         async function getBrands() {
             try {
                 const response = await brandAPI.getAll();
-                if(response.status === 200) {
-                    const brands = response.data
-                    setBrands(brands)
-                } else {
-                    console.log(response)
-                }
+                const brands = response.data
+                setBrands(brands)
             } catch (error) {
-                console.log(error)
+                alert(error.response.data.message)
             }
         }
         getBrands()
@@ -94,7 +86,7 @@ const Catogory = () => {
                     temp = temp.filter(e => filter.brands.includes(e.product.brand))
                 }
                 setProductFilter(temp)
-            } catch(err) {} 
+            } catch(error) {} 
         },
         [filter]
     )
@@ -108,15 +100,10 @@ const Catogory = () => {
     useEffect(() => {
         async function getProducts() {
             try {
-                const response = await wareHouseAPI.getCategoryById(id);
-                if(response.status === 200) {
-                    console.log(response.data)
-                    setProducts(response.data)
-                } else {
-                    console.log(response)
-                }
+                const response = await wareHouseAPI.getByCategoryId(id);
+                setProducts(response.data)
             } catch (error) {
-                console.log(error)
+                alert(error.response.data.message)
             }
         }
         getProducts()

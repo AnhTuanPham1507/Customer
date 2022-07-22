@@ -33,9 +33,10 @@ const customerAPI = {
 
 const wareHouseAPI = {
   getAll: () => axi.get(`/warehouse`),
+  getAndSortBySoldQuantity: (limit) => axi.get(`/warehouse/top/${limit}`),
   search: (searchTerm) => axi.get(`/warehouse?searchTerm=${searchTerm}`),
   getById: (id) => axi.get(`/warehouse/${id}`),
-  getCategoryById : (id) => axi.get(`/warehouse/category/${id}`)
+  getByCategoryId : (id) => axi.get(`/warehouse/category/${id}`)
 }
 
 const supplierAPI = {

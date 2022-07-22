@@ -15,7 +15,7 @@ function UpdatePassword(props) {
             try {
                 await customerAPI.getInfo(token)
             } catch (error) {
-                alert('token is invalid')
+                alert(error.response.data.message)
                 history.push('/')
             }
         }

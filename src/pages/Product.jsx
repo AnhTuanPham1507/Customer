@@ -21,15 +21,11 @@ const Product = props => {
             
             try {
                 const response = await wareHouseAPI.getById(id);
-                if(response.status === 200) {
-                    const product = response.data
-                    console.log(product)
-                    setProduct(product)
-                } else {
-                    console.log(response)
-                }
+                const product = response.data
+                console.log(product)
+                setProduct(product)
             } catch (error) {
-                console.log(error)
+                alert(error.response.data.message)
             }
         }
         getProduct()
@@ -39,14 +35,10 @@ const Product = props => {
         async function getProducts() {
             try {
                 const response = await wareHouseAPI.getAll();
-                if(response.status === 200) {
-                    const products = response.data
-                    setRelatedProducts(products)
-                } else {
-                    console.log(response)
-                }
+                const products = response.data
+                setRelatedProducts(products)
             } catch (error) {
-                console.log(error)
+                alert(error.response.data.message)
             }
         }
         getProducts()

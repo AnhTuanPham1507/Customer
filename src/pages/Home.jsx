@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import {wareHouseAPI, categoryAPI} from '../api/api';
+import { wareHouseAPI, categoryAPI } from '../api/api';
 
 import Helmet from '../components/Helmet'
 import HeroSlider from '../components/HeroSlider'
@@ -15,23 +15,20 @@ import heroSliderData from '../assets/fake-data/hero-slider'
 import policy from '../assets/fake-data/policy'
 
 import banner from '../assets/images/banner.png'
+import SectionProductsbyCategory from '../components/SectionProductsbyCategory';
 
 const Home = () => {
     const [products, setProducts] = useState([])
     const [categories, setCategories] = useState([])
-
+    
     useEffect(() => {
         async function getProducts() {
             try {
-                const response = await wareHouseAPI.getAll();
-                if(response.status === 200) {
-                    const products = response.data
-                    setProducts(products)
-                } else {
-                    console.log(response)
-                }
+                const response = await wareHouseAPI.getAndSortBySoldQuantity();
+                const products = response.data
+                setProducts(products)
             } catch (error) {
-                console.log(error)
+                alert(error.response.data.message)
             }
         }
         getProducts()
@@ -41,18 +38,14 @@ const Home = () => {
         async function getCategories() {
             try {
                 const response = await categoryAPI.getAll();
-                if(response.status === 200) {
-                    const categories = response.data
-                    setCategories(categories)
-                } else {
-                    console.log(response)
-                }
+                const categories = response.data
+                setCategories(categories)
             } catch (error) {
-                console.log(error)
+                alert(error.response.data.message)
             }
         }
         getCategories()
-    },[])
+    }, [])
 
     return (
         <Helmet title="Trang chủ">
@@ -105,20 +98,20 @@ const Home = () => {
                                     <CategoryCard
                                         key={item._id}
                                         item={item}
-                                />
+                                    />
                                 </Link>
-                                
+
                             ))
                         }
                     </Grid>
                 </SectionBody>
             </Section>
-            {/* best selling section */}
+
+            {/* section top products*/}
             <Section>
                 <SectionTitle>
-                    Sản phẩm 
+                    Sản phẩm bán chạy trong tuần
                 </SectionTitle>
-                
                 <SectionBody>
                     <Grid
                         col={5}
@@ -137,12 +130,18 @@ const Home = () => {
                     </Grid>
                 </SectionBody>
             </Section>
-            {/* end best selling section */}
+            {/* end section top products */}
 
-            {/* new arrival section */}
-                        
-            {/* end new arrival section */}
-            
+            {/* section product by category id */}
+            {
+                categories.map((item) => (
+                    <SectionProductsbyCategory
+                        category={item}
+                    />
+                ))
+            }
+            {/* end section product by category id */}
+
             {/* banner */}
             <Section>
                 <SectionBody>

@@ -10,7 +10,6 @@ function ForgotPassword(props) {
             await customerAPI.forgotPassword(email)
             setIsSent(true)
         } catch (error) {
-            console.log(error)
             alert(error.response.data.message)
         }
     }

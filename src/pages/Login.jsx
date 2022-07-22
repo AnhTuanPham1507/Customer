@@ -17,30 +17,7 @@ function Login() {
     const history = useHistory()
     const dispatch = useDispatch()
     function handleLoginSubmit(formValues) {
-        const { phone, password } = formValues
-        if(!validatePhone(phone)){
-            alert('số điện thoại không hợp lệ')
-            return
-        }
-        async function getToken() {
-            try {                
-                const response = await customerAPI.login({phone,password})
-                if (response.status === 200) {
-                    dispatch(addToken(response.data.accessToken))
-                    alert('đăng nhập thành công')
-                    history.push('/')
-                }
-                else {
-                    alert('đăng nhập thất bại')
-                }
-            }
-            catch (err) {
-                alert('đăng nhập thất bại')
-                console.log(err)
-            }
-        }
 
-        getToken()
     }
 
     return (

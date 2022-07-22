@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import search from '../assets/images/icon/search-icon.svg';
 import { useEffect } from 'react';
 import { productModalSlice } from '../redux/product-modal/productModalSlice';
@@ -55,7 +55,7 @@ function Search(props) {
                     console.log(res.data.message)
                 }
             } catch (error) {
-                
+                alert.log(error.response.data.message)
             }
         }
         typingTimeoutRef.current = setTimeout(searching,200)
@@ -69,16 +69,16 @@ function Search(props) {
                     
                     <div className="input_container">
                         <img src={search} className="input_img"/>
-                        <input ref={inputRef} type="text" id="keywords"  name="keywords_submit" placeholder="Tìm kiếm sản phẩm" className="input" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                        <input ref={inputRef} type="text" id="keywords"  name="keywords_submit" placeholder="Tìm kiếm sản phẩm" className="input_search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                         <div className="search-close-switch" onClick={handleSearchFormShow}>+</div>
                     </div>
                     <div className="search_seggest">
-                        <p>Cụm từ tìm kiếm phổ biến</p>
-                        <ListGroup>
+                        <p>GỢI Ý TÌM KIẾM</p>
+                        <ListGroup className="search_seggest">
                         {
                             searchedProducts.map(product => (
                                 <ListGroup.Item onClick={() => handleClickSearchItem(product.product.name)}>
-                                    {product.product.name}
+                                   <FontAwesomeIcon className='search_icon' icon={faMagnifyingGlass} /> {product.product.name}
                                 </ListGroup.Item>
                             ))
                         }

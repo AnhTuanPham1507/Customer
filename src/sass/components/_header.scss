@@ -220,3 +220,23 @@
 .dropdown-toggle::after {
     display: none;
 }
+
+
+.dropdown-menu{
+    width:330px;
+    margin-top: 14px;
+    border-radius: 10px;
+    border: 1px solid #d2d2d7;
+}
+
+  .dropdown-item{
+    width: 80%;
+    border-top: 1px solid #d2d2d7;
+    padding: 0.8rem 10rem 0.8rem 0;
+    margin: 0 auto;
+  }
+  .dropdown-item:hover{
+        border-radius: 10px;
+        width: 95%;
+        
+  }

@@ -23,20 +23,13 @@ function Register() {
         async function createCustomer() {
             try {
                 const res = await customerAPI.register(registerData)
-                if (res.status === 201) {
-                    const token = res.data
-                    alert('đăng ký thành công')
-                    dispatch(addToken(token))
-                    history.push('/')
-                }
-                else {
-                    alert('đăng ký thất bại')
-                    console.log(res.data)
-                }
+                const token = res.data
+                alert('đăng ký thành công')
+                dispatch(addToken(token))
+                history.push('/')
             }
-            catch (err) {
-                alert('đăng ký thất bại')
-                console.log(err)
+            catch (error) {
+                alert(error.response.data.message)
             }
 
         }

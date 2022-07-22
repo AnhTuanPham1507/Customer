@@ -33,14 +33,10 @@ const Catalog = () => {
         async function getCategories() {
             try {
                 const response = await categoryAPI.getAll();
-                if(response.status === 200) {
-                    const categories = response.data
-                    setCategories(categories)
-                } else {
-                    console.log(response)
-                }
+                const categories = response.data
+                setCategories(categories)
             } catch (error) {
-                console.log(error)
+                alert(error.response.data.message)
             }
         }
         getCategories()
@@ -58,8 +54,8 @@ const Catalog = () => {
                 } else {
                     console.log(response)
                 }
-            } catch(err) {
-                console.log(err)
+            } catch(error) {
+                alert(error.response.data.message)
             }           
         }
         getProducts()
@@ -69,14 +65,10 @@ const Catalog = () => {
         async function getBrands() {
             try {
                 const response = await brandAPI.getAll();
-                if(response.status === 200) {
-                    const brands = response.data
-                    setBrands(brands)
-                } else {
-                    console.log(response)
-                }
+                const brands = response.data
+                setBrands(brands)
             } catch (error) {
-                console.log(error)
+                alert(error.response.data.message)
             }
         }
         getBrands()

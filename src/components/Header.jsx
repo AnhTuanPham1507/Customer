@@ -53,15 +53,11 @@ const Header = (props) => {
     async function handleSearch(searchTerm) {
         try {
             const response = await wareHouseAPI.search(searchTerm);
-            if(response.status === 200) {
-                const searchedProducts = response.data
-                setShowSearchForm(!showSearchForm)
-                history.push(`/catalog?searchTerm=${searchTerm}`)
-            } else {
-                console.log(response)
-            }
+            const searchedProducts = response.data
+            setShowSearchForm(!showSearchForm)
+            history.push(`/catalog?searchTerm=${searchTerm}`)
         } catch (error) {
-            console.log(error)
+            alert(error.response.data.message)
         }
     };
 
